@@ -1,3 +1,6 @@
+import numpy as np
+import itertools as it
+
 from knapsack import KnapSack
 
 # first testing scenario

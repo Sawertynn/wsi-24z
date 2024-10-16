@@ -26,7 +26,7 @@ class KnapSack:
 
     def solve_knapsack_pw_ratio(self) -> np.ndarray[int]:
         indexes = list(range(len(self.profits)))
-        indexes.sort(key=lambda ind: profits[ind] / weights[ind], reverse=True)
+        indexes.sort(key=lambda ind: self.profits[ind] / self.weights[ind], reverse=True)
 
         print(indexes)
         print(self.profits[indexes] / self.weights[indexes])
