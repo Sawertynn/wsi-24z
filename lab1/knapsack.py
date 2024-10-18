@@ -16,7 +16,7 @@ class KnapSack:
         indexes = np.array(range(len(self.profits)))
         maxSize = len(self.profits) + 1
 
-        for size in range(maxSize):
+        for size in range(1, maxSize):
             for subset in it.combinations(indexes, size):
                 chosen = np.array(subset).astype(int)
                 if self._fits(chosen) and self.profits[chosen].sum() > best_profit:
