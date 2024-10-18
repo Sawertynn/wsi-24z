@@ -28,10 +28,14 @@ class KnapSack:
         indexes = list(range(len(self.profits)))
         indexes.sort(key=lambda ind: self.profits[ind] / self.weights[ind], reverse=True)
 
-        print(indexes)
-        print(self.profits[indexes] / self.weights[indexes])
-
-        best_indexes = None
+        best_indexes = []
+        current_weight = 0
+        for i, w in zip(indexes, self.weights[indexes]):
+            if w + current_weight <= self.capacity:
+                best_indexes.append(i)
+                current_weight += w
+            if current_weight == self.capacity:
+                break
         return best_indexes
 
     # Utility methods
@@ -39,7 +43,11 @@ class KnapSack:
         return sum(self.profits[indexes])
 
     def s_weight(self, indexes):
-        return sum(self.weights(indexes))
+        return sum(self.weights[indexes])
+    
+    def print_answer(self, indexes):
+        s = f'answer: {indexes}, total profit: {self.s_profit(indexes)}, weight: {self.s_weight(indexes)}/{self.capacity}'
+        print(s)
 
     def _fits(self, indexes) -> bool:
         return sum(self.weights[indexes]) < self.capacity
